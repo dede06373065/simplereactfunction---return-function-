@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="test"></div>
+    <script src="./package/react/react.development.js"></script>
+    <script src="./package/react/react-dom.development.js"></script>
+    <script src="./package/react/babel.min.js"></script>
+    <script type="text/babel">
+        class Login extends React.Component {
+            state={
+                username:'',
+                password:''
+            }
+        
+            handleSumbit=(event)=>{
+                event.preventDefault()
+                
+            }
+         saveData=(dataType)=>{
+             return(
+                 (event)=>{
+                     this.setState({[dataType]:event.target.value})
+                
+                 }
+             )
+
+         }
+
+
+            //用input里面的name其实就是把q的值经过地址传给下一个网址
+            //ref={c=>this.name=c}很重要！在函数里就可以直接解构了const {username, password}=this
+            render() {
+                console.log(this.state.username)
+                     console.log(this.state.password )
+                return (
+                    <form action="www.google.com" onSubmit={this.handleSumbit}>
+                       用户名： <input  onChange={ this.saveData('username')} type="text" name="username" />
+                        密码：<input onChange={this.saveData('password')} type="password" name="password" />
+                        <button onClick={this.show}>Login</button>
+                    </form>
+                )
+            }
+
+        }
+
+
+
+        ReactDOM.render(<Login />, document.getElementById('test'));
+    </script>
+</body>
+
+</html>
